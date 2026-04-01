@@ -1,1 +1,0 @@
-export { SkeletonColumn } from './SkeletonColumn';

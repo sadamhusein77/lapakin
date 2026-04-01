@@ -1,7 +1,5 @@
-import { Kanban } from './presentation/pages';
-
 function App() {
-  return <Kanban />;
+  return <div className=""></div>;
 }
 
 export default App;

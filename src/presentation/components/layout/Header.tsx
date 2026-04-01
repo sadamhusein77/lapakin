@@ -7,10 +7,6 @@ import { Button } from '../ui/Button';
 
 const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-  { path: '/projects', label: 'Projects' },
-  { path: '/kanban', label: 'Kanban' },
-  { path: '/contact', label: 'Contact' },
 ];
 
 export function Header() {

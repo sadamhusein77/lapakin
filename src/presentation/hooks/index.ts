@@ -221,31 +221,3 @@ export function useScrollPosition() {
 
   return scrollPosition;
 }
-
-// Kanban Board Hook
-import type { KanbanColumnData } from '../components/organisms/KanbanBoard/KanbanBoard.types';
-import { kanbanRepository } from '../../data/repositories/kanban';
-
-export function useKanbanBoard() {
-  const [columns, setColumns] = useState<KanbanColumnData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  const fetchBoard = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const data = await kanbanRepository.getBoard();
-      setColumns(data);
-    } catch (err) {
-      setError(err as Error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchBoard();
-  }, [fetchBoard]);
-
-  return { columns, isLoading, error, refetch: fetchBoard };
-}
