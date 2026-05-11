@@ -1,7 +1,7 @@
 // Domain Layer - Repository Interfaces (Contracts)
 // Define contracts that data layer must implement
 
-import type { User, Project, Skill, Experience, ContactFormData, ContactResponse } from '../entities';
+import type { User, Project, Skill, Experience, ContactFormData, ContactResponse, VendorCategory, StreetVendor } from '../entities';
 import type { SkillCategory } from '../entities';
 
 export interface IUserRepository {
@@ -27,4 +27,10 @@ export interface IExperienceRepository {
 
 export interface IContactRepository {
   sendMessage(data: ContactFormData): Promise<ContactResponse>;
+}
+
+export interface IStreetVendorRepository {
+  getAllVendors(): Promise<StreetVendor[]>;
+  getVendorById(id: string): Promise<StreetVendor | null>;
+  getVendorsByCategory(category: VendorCategory): Promise<StreetVendor[]>;
 }

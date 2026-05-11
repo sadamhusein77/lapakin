@@ -1,9 +1,9 @@
 // Data Layer - Repository Implementations
 // Concrete implementations of domain repository contracts
 
-import type { IUserRepository, IProjectRepository, ISkillRepository, IExperienceRepository, IContactRepository } from '../../domain/repositories';
-import type { User, Project, Skill, Experience, ContactFormData, ContactResponse, SkillCategory } from '../../domain/entities';
-import { mockUser, mockProjects, mockSkills, mockExperiences } from '../datasources/local';
+import type { IUserRepository, IProjectRepository, ISkillRepository, IExperienceRepository, IContactRepository, IStreetVendorRepository } from '../../domain/repositories';
+import type { User, Project, Skill, Experience, ContactFormData, ContactResponse, SkillCategory, StreetVendor, VendorCategory } from '../../domain/entities';
+import { mockUser, mockProjects, mockSkills, mockExperiences, mockStreetVendors } from '../datasources/local';
 
 // Simulate async operations
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -66,5 +66,22 @@ export class ContactRepository implements IContactRepository {
     await delay(1500); // Simulate API call
     console.log('Contact form submitted:', data);
     return { success: true, message: 'Message sent successfully!' };
+  }
+}
+
+export class StreetVendorRepository implements IStreetVendorRepository {
+  async getAllVendors(): Promise<StreetVendor[]> {
+    await delay(100);
+    return mockStreetVendors;
+  }
+
+  async getVendorById(id: string): Promise<StreetVendor | null> {
+    await delay(100);
+    return mockStreetVendors.find(v => v.id === id) || null;
+  }
+
+  async getVendorsByCategory(category: VendorCategory): Promise<StreetVendor[]> {
+    await delay(100);
+    return mockStreetVendors.filter(v => v.category === category);
   }
 }

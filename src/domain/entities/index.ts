@@ -52,9 +52,46 @@ export interface ContactFormData {
   message: string;
 }
 
-export * from './kanban';
-
 export interface ContactResponse {
   success: boolean;
   message: string;
+}
+
+// Street Vendor
+export type VendorCategory = 'food' | 'drinks' | 'goods' | 'services';
+
+export type VendorType = 'fried rice' | 'noodles' | 'snacks' | 'drinks' | 'goods' | 'services';
+
+export interface StreetVendor {
+  id: string;
+  name: string;
+  description: string;
+  category: VendorCategory;
+  vendorType: VendorType;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  address: string;
+  rating: number;
+  priceRange: string;
+  startTime: string; // e.g., "16:00"
+  endTime: string;   // e.g., "21:00"
+  isOpen: boolean;  // computed from time
+  isVisible: boolean;
+  imageUrl?: string;
+  phone?: string;
+}
+
+// Role types
+export type Role = 'customer' | 'vendor' | 'admin';
+
+export interface MockAccount {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+  avatar?: string;
+  vendorId?: string; // if role is vendor, link to their primary vendor data
+  vendorId2?: string; // second warung (vendor can have up to 2)
 }

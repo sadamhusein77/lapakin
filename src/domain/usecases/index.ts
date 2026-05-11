@@ -1,8 +1,8 @@
 // Domain Layer - Use Cases
 // Business logic independent of frameworks
 
-import type { User, Project, Skill, Experience, ContactFormData, ContactResponse, SkillCategory } from '../entities';
-import type { IUserRepository, IProjectRepository, ISkillRepository, IExperienceRepository, IContactRepository } from '../repositories';
+import type { User, Project, Skill, Experience, ContactFormData, ContactResponse, SkillCategory, VendorCategory, StreetVendor } from '../entities';
+import type { IUserRepository, IProjectRepository, ISkillRepository, IExperienceRepository, IContactRepository, IStreetVendorRepository } from '../repositories';
 
 // User Use Cases
 export class GetUserProfileUseCase {
@@ -101,5 +101,42 @@ export class SendContactMessageUseCase {
     }
 
     return this.contactRepository.sendMessage(data);
+  }
+}
+
+// Street Vendor Use Cases
+export class GetAllVendorsUseCase {
+  private vendorRepository: IStreetVendorRepository;
+
+  constructor(vendorRepository: IStreetVendorRepository) {
+    this.vendorRepository = vendorRepository;
+  }
+
+  async execute(): Promise<StreetVendor[]> {
+    return this.vendorRepository.getAllVendors();
+  }
+}
+
+export class GetVendorByIdUseCase {
+  private vendorRepository: IStreetVendorRepository;
+
+  constructor(vendorRepository: IStreetVendorRepository) {
+    this.vendorRepository = vendorRepository;
+  }
+
+  async execute(id: string): Promise<StreetVendor | null> {
+    return this.vendorRepository.getVendorById(id);
+  }
+}
+
+export class GetVendorsByCategoryUseCase {
+  private vendorRepository: IStreetVendorRepository;
+
+  constructor(vendorRepository: IStreetVendorRepository) {
+    this.vendorRepository = vendorRepository;
+  }
+
+  async execute(category: VendorCategory): Promise<StreetVendor[]> {
+    return this.vendorRepository.getVendorsByCategory(category);
   }
 }
