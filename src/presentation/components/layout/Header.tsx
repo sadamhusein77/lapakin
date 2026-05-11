@@ -3,10 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme, useScrollPosition } from '../../hooks';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 
 const navLinks = [
   { path: '/', label: 'Home' },
+  { path: '/vendors', label: 'Pedagang' },
 ];
 
 export function Header() {
